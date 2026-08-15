@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDICONNECT - Plateforme Médicale Connectée</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #059669;
+            --dark-green: #047857;
+            --light-green: #10b981;
+            --bg-green: #e8f5e9;
+            --bg-light: #f0fff4;
+            --text-dark: #0f1720;
+            --text-muted: #6b7280;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 40px rgba(10, 14, 30, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-green);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            color: var(--primary-green);
+            font-size: 2.2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #0a7a41 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 26px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 10px 28px rgba(5,150,105,0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 42px rgba(5,150,105,0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #e8f5e9 0%, #d7f8e8 100%);
+            padding: 100px 40px;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #0a7a41;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(5,150,105,0.2);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(90deg, #047857, #059669);
+            padding: 60px 40px;
+            color: white;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #d7f8e8;
+            margin-bottom: 8px;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 40px;
+            background: var(--white);
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #0a7a41;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: linear-gradient(180deg, #f0fff4, #ffffff);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(15,23,42,0.06);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #e7fff3, #d7f8e8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 30px rgba(10,122,65,0.15);
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: var(--dark-green);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0a7a41;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Features with Images */
+        .features {
+            padding: 100px 40px;
+            background: var(--bg-light);
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .feature-row:nth-child(even) {
+            direction: rtl;
+        }
+
+        .feature-row:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .feature-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(5,150,105,0.15);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .feature-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0a7a41;
+            margin-bottom: 20px;
+        }
+
+        .feature-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+            padding: 100px 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary-green);
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f1720;
+            color: white;
+            padding: 60px 40px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--light-green);
+        }
+
+        .footer-column p {
+            color: #9ca3af;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--light-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #374151;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .feature-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>MEDICONNECT</h1>
+            </div>
+            <div class="header-buttons">
+                <a href="formulaire-candidature.html" class="btn btn-outline">
+                    <i class="fas fa-user-plus"></i> Postuler
+                </a>
+                <a href="admin-login.php" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Connexion Staff/Admin
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h2>La santé connectée pour un avenir meilleur</h2>
+                <p>MEDICONNECT révolutionne l'accès aux soins en connectant patients, professionnels de santé et établissements médicaux dans un écosystème numérique sécurisé et performant.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" style="padding: 16px 32px; font-size: 1.05rem;">
+                        <i class="fas fa-rocket"></i> Découvrir la plateforme
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80" alt="Équipe médicale moderne">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-text">Établissements partenaires</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2,500+</div>
+                <div class="stat-text">Professionnels de santé</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">75,000+</div>
+                <div class="stat-text">Patients connectés</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-text">Support disponible</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <div class="services-container">
+            <div class="section-title">
+                <h2>Nos Services</h2>
+                <p>Des solutions innovantes pour une santé connectée</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Gestion des Patients</h3>
+                    <p>Dossiers médicaux électroniques sécurisés, historique complet et suivi personnalisé pour chaque patient.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Rendez-vous en Ligne</h3>
+                    <p>Planification intelligente des consultations avec gestion automatique des disponibilités et rappels.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-prescription-bottle"></i>
+                    </div>
+                    <h3>Pharmacie Connectée</h3>
+                    <p>Ordonnances électroniques sécurisées et gestion en temps réel des stocks de médicaments.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Téléconsultation</h3>
+                    <p>Consultations médicales à distance en haute qualité avec partage de documents sécurisé.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sécurité Maximale</h3>
+                    <p>Cryptage de niveau bancaire et conformité RGPD pour protéger vos données de santé.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analyses & Rapports</h3>
+                    <p>Tableaux de bord intelligents et rapports détaillés pour un suivi optimal des performances.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features with Images -->
+    <section class="features">
+        <div class="features-container">
+            <div class="section-title">
+                <h2>Pourquoi choisir MEDICONNECT ?</h2>
+                <p>Une technologie de pointe au service de la santé</p>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" alt="Technologie médicale">
+                </div>
+                <div class="feature-content">
+                    <h3>Technologie de Pointe</h3>
+                    <p>Notre plateforme utilise les dernières innovations en intelligence artificielle et cloud computing pour garantir des performances optimales et une disponibilité 24/7.</p>
+                    <p>Interface intuitive, traitement rapide des données et intégration fluide avec tous vos systèmes existants.</p>
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80" alt="Équipe médicale professionnelle">
+                </div>
+                <div class="feature-content">
+                    <h3>Professionnels Qualifiés</h3>
+                    <p>Collaborez avec un réseau de plus de 2,500 professionnels de santé certifiés et expérimentés. Chaque praticien est rigoureusement vérifié et validé.</p>
+                    <p>Médecins généralistes, spécialistes, infirmiers et psychologues - tous dédiés à offrir les meilleurs soins possibles.</p>
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=800&q=80" alt="Sécurité des données">
+                </div>
+                <div class="feature-content">
+                    <h3>Sécurité & Confidentialité</h3>
+                    <p>Vos données de santé sont notre priorité absolue. Nous utilisons un cryptage de niveau bancaire et respectons strictement toutes les réglementations en vigueur.</p>
+                    <p>Hébergement certifié HDS (Hébergeur de Données de Santé), conformité RGPD et audits de sécurité réguliers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Rejoignez notre équipe</h2>
+        <p>Nous recherchons des professionnels passionnés pour révolutionner l'accès aux soins. Médecins, infirmiers, spécialistes et personnel administratif, devenez acteurs du changement.</p>
+        <button class="btn btn-white" onclick="openApplicationModal()">
+            <i class="fas fa-briefcase"></i> Postuler maintenant
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>MEDICONNECT</h3>
+                <p>Plateforme médicale innovante pour une santé connectée et accessible à tous.</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Avenue de la Santé, 75015 Paris</p>
+                <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@mediconnect.fr</p>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Gestion patients</a></li>
+                    <li><a href="#">Téléconsultation</a></li>
+                    <li><a href="#">Ordonnances</a></li>
+                    <li><a href="#">Rapports médicaux</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Entreprise</h3>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Presse</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Ressources</h3>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Blog médical</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MEDICONNECT. Tous droits réservés. | Conforme RGPD et réglementation santé</p>
+        </div>
+    </footer>
+</body>
+</html>

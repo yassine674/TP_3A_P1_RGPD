@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Candidature - MEDICONNECT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-green: #059669;
+            --dark-green: #047857;
+            --light-green: #10b981;
+            --bg-green: #e8f5e9;
+            --bg-light: #f0fff4;
+            --text-dark: #0f1720;
+            --text-muted: #6b7280;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 40px rgba(10, 14, 30, 0.12);
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #d7f8e8 100%);
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        /* Header */
+        .form-header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            color: var(--primary-green);
+            font-size: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #0a7a41 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        /* Hero Section du formulaire */
+        .form-hero {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .form-hero h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .form-hero p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Container du formulaire */
+        .form-container {
+            max-width: 900px;
+            margin: -40px auto 0;
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Sections du formulaire */
+        .form-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0a7a41;
+            margin: 40px 0 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--bg-green);
+        }
+
+        .form-section-title:first-child {
+            margin-top: 0;
+        }
+
+        .form-section-title i {
+            color: var(--primary-green);
+        }
+
+        /* Layout des champs */
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .field {
+            margin-bottom: 24px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.95rem;
+            color: #374151;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .required-star {
+            color: #ef4444;
+            margin-left: 3px;
+        }
+
+        .field input[type="text"],
+        .field input[type="email"],
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            font-family: "Inter", sans-serif;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .field input:hover,
+        .field select:hover,
+        .field textarea:hover {
+            border-color: var(--primary-green);
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(5,150,105,0.1);
+        }
+
+        .field small {
+            display: block;
+            margin-top: 6px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .field textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* CV Upload */
+        .cv-upload-box {
+            margin-top: 12px;
+            padding: 40px;
+            border: 2px dashed var(--primary-green);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(240,255,244,0.8), rgba(255,255,255,0.8));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .cv-upload-box:hover {
+            background: linear-gradient(135deg, #f0fff4, #ffffff);
+            border-color: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(5,150,105,0.15);
+        }
+
+        .cv-upload-icon {
+            font-size: 3.5rem;
+            color: var(--primary-green);
+            margin-bottom: 16px;
+        }
+
+        .cv-upload-text {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .cv-upload-text span {
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .cv-upload-hint {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Preview du CV */
+        .cv-upload-preview {
+            margin-top: 16px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #d7f8e8, #e8f5e9);
+            border: 2px solid var(--primary-green);
+        }
+
+        .cv-upload-preview.show {
+            display: flex;
+        }
+
+        .cv-preview-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cv-preview-icon {
+            font-size: 2rem;
+            color: var(--primary-green);
+        }
+
+        .cv-preview-details strong {
+            display: block;
+            color: #0a7a41;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .cv-preview-details small {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .cv-preview-remove {
+            background: #fee;
+            border: none;
+            color: #ef4444;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 10px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .cv-preview-remove:hover {
+            background: #fcc;
+            transform: scale(1.05);
+        }
+
+        /* Bouton submit */
+        .btn-submit {
+            width: 100%;
+            margin-top: 40px;
+            padding: 18px 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 12px;
+            border: none;
+            color: white;
+            background: linear-gradient(90deg, #10b981, #059669);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 28px rgba(5,150,105,0.25);
+            font-family: "Inter", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-submit:not(:disabled):hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 42px rgba(5,150,105,0.35);
+            background: linear-gradient(90deg, #059669, #047857);
+        }
+
+        /* Progress indicator */
+        .progress-container {
+            display: none;
+            margin-top: 30px;
+            padding: 24px;
+            background: linear-gradient(135deg, #f0fff4, #e8f5e9);
+            border-radius: 12px;
+            border: 2px solid var(--primary-green);
+        }
+
+        .progress-container.show {
+            display: block;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: var(--dark-green);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            padding: 40px;
+            background: linear-gradient(135deg, #d7f8e8, #e8f5e9);
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 30px;
+            border: 2px solid var(--primary-green);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        .success-message h3 {
+            color: #0a7a41;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .success-message p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-hero {
+                padding: 40px 20px;
+            }
+
+            .form-hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .form-card {
+                padding: 30px 25px;
+            }
+
+            .row-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                padding: 0 20px;
+            }
+
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="form-header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>MEDICONNECT</h1>
+            </div>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="form-hero">
+        <h2>Formulaire de Candidature</h2>
+        <p>Rejoignez l'équipe MEDICONNECT et participez à la révolution de la santé connectée</p>
+    </section>
+
+    <!-- Formulaire -->
+    <div class="form-container">
+        <div class="form-card">
+            <form id="candidatureForm" action="submit-candidature.php" method="POST" enctype="multipart/form-data">
+                <!-- Section Identité -->
+                <h2 class="form-section-title">
+                    <i class="fas fa-id-card"></i>
+                    Identité
+                </h2>
+
+                <div class="row-2">
+                    <div class="field">
+                        <label for="prenom">Prénom <span class="required-star">*</span></label>
+                        <input type="text" id="prenom" name="prenom" required placeholder="Ex : Marie">
+                        <small>Entrez votre prénom</small>
+                    </div>
+
+                    <div class="field">
+                        <label for="nom">Nom <span class="required-star">*</span></label>
+                        <input type="text" id="nom" name="nom" required placeholder="Ex : Dupont">
+                        <small>Entrez votre nom</small>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="naissance">Date et lieu de naissance</label>
+                    <input type="text" id="naissance" name="naissance" placeholder="Ex : 12/08/2002 – Paris">
+                </div>
+
+                <!-- Section Informations personnelles -->
+                <h2 class="form-section-title">
+                    <i class="fas fa-user"></i>
+                    Informations personnelles
+                </h2>
+
+                <div class="row-2">
+                    <div class="field">
+                        <label for="diplome">Niveau de diplôme</label>
+                        <input type="text" id="diplome" name="diplome" placeholder="Ex : Bac+3, BTS, Licence...">
+                    </div>
+
+                    <div class="field">
+                        <label for="adresse_postale">Adresse postale</label>
+                        <input type="text" id="adresse_postale" name="adresse_postale" placeholder="Ex : 24 rue de la Santé, 75015 Paris">
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label for="securite">Numéro de sécurité sociale</label>
+                    <input type="text" id="securite" name="securite" placeholder="Ex : 1 123 45 67 890 123">
+                </div>
+
+                <!-- Section Contact -->
+                <h2 class="form-section-title">
+                    <i class="fas fa-phone"></i>
+                    Contact
+                </h2>
+
+                <div class="row-2">
+                    <div class="field">
+                        <label for="email">Adresse email <span class="required-star">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+                    </div>
+
+                    <div class="field">
+                        <label for="telephone">Numéro de téléphone <span class="required-star">*</span></label>
+                        <input type="text" id="telephone" name="telephone" required placeholder="+33 6 12 34 56 78">
+                    </div>
+                </div>
+
+
+
+                <!-- Section CV -->
+                <h2 class="form-section-title">
+                    <i class="fas fa-file-alt"></i>
+                    Votre CV
+                </h2>
+
+                <div class="cv-upload-box" id="cvBox">
+                    <div class="cv-upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="cv-upload-text">
+                        Déposez votre CV ici ou <span>cliquez pour sélectionner</span>
+                    </div>
+                    <div class="cv-upload-hint">PDF, DOC ou DOCX • Max 10 MB</div>
+                    <input type="file" id="cvInput" name="cv" accept=".pdf,.doc,.docx" style="display:none;">
+                </div>
+
+                <div class="cv-upload-preview" id="cvPreview">
+                    <div class="cv-preview-info">
+                        <div class="cv-preview-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="cv-preview-details">
+                            <strong id="cvName"></strong>
+                            <small id="cvSize"></small>
+                        </div>
+                    </div>
+                    <button type="button" class="cv-preview-remove" id="removeCV">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Progress indicator -->
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Envoi en cours...</div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    Envoyer ma candidature
+                </button>
+
+                <!-- Success message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Candidature envoyée avec succès !</h3>
+                    <p>Nous avons bien reçu votre candidature.</p>
+                    <p>Notre équipe RH l'examinera dans les plus brefs délais et vous recevrez un email de confirmation.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // CV Upload functionality
+        const box = document.getElementById("cvBox");
+        const input = document.getElementById("cvInput");
+        const preview = document.getElementById("cvPreview");
+        const cvName = document.getElementById("cvName");
+        const cvSize = document.getElementById("cvSize");
+        const remove = document.getElementById("removeCV");
+        const form = document.getElementById("candidatureForm");
+        const submitBtn = document.getElementById("submitBtn");
+        const progressContainer = document.getElementById("progressContainer");
+        const progressFill = document.getElementById("progressFill");
+        const progressText = document.getElementById("progressText");
+        const successMessage = document.getElementById("successMessage");
+
+        box.addEventListener("click", () => input.click());
+
+        input.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            cvName.textContent = file.name;
+            const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+            cvSize.textContent = sizeMB + " MB";
+
+            preview.classList.add("show");
+            
+            // Check file size (max 10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                alert("Le fichier est trop volumineux. Taille maximale : 10 MB");
+                input.value = "";
+                preview.classList.remove("show");
+            }
+        });
+
+        remove.addEventListener("click", () => {
+            input.value = "";
+            preview.classList.remove("show");
+        });
+
+        // Form submission - VALIDATION AVANT ENVOI RÉEL
+        form.addEventListener("submit", (e) => {
+            // Validate required fields
+            const prenom = document.getElementById("prenom").value;
+            const nom = document.getElementById("nom").value;
+            const email = document.getElementById("email").value;
+            const telephone = document.getElementById("telephone").value;
+            
+            if (!prenom || !nom || !email || !telephone) {
+                e.preventDefault(); // Empêcher l'envoi seulement si erreur
+                alert("Veuillez remplir tous les champs obligatoires (*)");
+                return false;
+            }
+            
+            // Si tout est OK, le formulaire s'envoie normalement à submit-candidature.php
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+        });
+
+        // Enable/disable submit button based on required fields
+        const requiredInputs = document.querySelectorAll('input[required], select[required]');
+        requiredInputs.forEach(input => {
+            input.addEventListener('input', checkFormValidity);
+            input.addEventListener('change', checkFormValidity);
+        });
+
+        function checkFormValidity() {
+            const allFilled = Array.from(requiredInputs).every(input => input.value.trim() !== '');
+            submitBtn.disabled = !allFilled;
+        }
+
+        // Initial check
+        checkFormValidity();
+    </script>
+</body>
+</html>
